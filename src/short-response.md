@@ -1,6 +1,7 @@
 # Short Responses
 
 For this assessment, aim to write a response with the following qualities:
+
 - [ ] Addresses all parts of the prompt
 - [ ] Accurately uses relevant technical terminology
 - [ ] Is free of grammar and spelling mistakes
@@ -26,7 +27,7 @@ const getLetterGrade = (score) => {
   }
 
   return "Your grade is: " + letter;
-}
+};
 
 console.log(getLetterGrade(95)); // This should print "Your grade is: A"
 console.log(getLetterGrade(82)); // This should print "Your grade is: B"
@@ -42,11 +43,11 @@ console.log(getLetterGrade(65)); // This should print "Your grade is: F"
 
 **Part A:**
 
-Your response...
+The bug is occurring because you are declaring the `letter` variable in the **_block scope_** of the `if/else` statements. This means the variable cannot be read outside of that scope, so when you try to use `letter`, it outputs `undefined`.
 
 **Part B:**
 
-Your response...
+I would fix this by declaring the `letter` variable in the **_global scope_** and then reassigning its value depending on which statement is true.
 
 ---
 
@@ -69,18 +70,18 @@ console.log(originalSettings.volume);
 
 **Part A:**
 
-Your response...
+`75` would be logged to the console because by doing `newSettings = originalSettings`, you are not creating a new object but instead copying the **_reference_** to the same object. When you change the value of volume in `newSettings`, it is also updated in `originalSettings`.
 
 **Part B:**
 
-Your response...
+I would create a shallow copy of `originalSettings` by using the **_spread operator_**.
 
 **Corrected Code:**
 
 ```js
 // Fix this code so newSettings is a true copy
 const originalSettings = { volume: 50, brightness: 80 };
-const newSettings = originalSettings;
+const newSettings = { ...originalSettings };
 newSettings.volume = 75;
 console.log(originalSettings.volume);
 ```
@@ -90,6 +91,7 @@ console.log(originalSettings.volume);
 ## Prompt 3
 
 Given this array of products and the code using `filter`:
+
 ```js
 const products = [
   { name: "Laptop", price: 1000, inStock: true },
@@ -99,15 +101,16 @@ const products = [
 ];
 
 const itemsInStock = products.filter((product) => {
-  return product.inStock
+  return product.inStock;
 });
 ```
 
 Walk through what happens in the first iteration of filter:
+
 - What is the value of `product`?
 - What gets returned from the callback?
 - What happens with that returned value?
 
 ### Response 3
 
-Your response...
+The value of `product` is each **_object_** in the array. In the first iteration, the compiler looks at the first object and checks if `inStock` is true. If it is true, then that object is returned into a new array, and the compiler moves to the next object. At each iteration, the compiler will continue to push only the objects where `inStock` is true.
